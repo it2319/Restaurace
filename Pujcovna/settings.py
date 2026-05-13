@@ -32,12 +32,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'knihovna'
 ]
 
 MIDDLEWARE = [
@@ -119,3 +121,28 @@ STATIC_URL = 'static/'
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+JAZZMIN_SETTINGS = {
+    "site_title": "Restaurace Admin",
+    "site_header": "Správa restaurace",
+    "site_brand": "Restaurace",
+    "welcome_sign": "Vítej ve správě restaurace",
+    "copyright": "Restaurace",
+
+    "language_chooser": False,
+
+    "show_sidebar": True,
+    "navigation_expanded": True,
+
+    "order_with_respect_to": [
+        "knihovna.Restaurace",
+        "knihovna.Stoly",
+        "knihovna.Rezervace",
+        "knihovna.Zakaznik",
+        "knihovna.Telefon",
+        "knihovna.Adresa",
+        "knihovna.Mesto",
+        "knihovna.Stat",
+        "knihovna.Oteviraci_doba",
+    ]
+}

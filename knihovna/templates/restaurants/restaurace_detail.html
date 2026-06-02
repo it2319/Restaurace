@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Detail restaurace{% endblock %}
+
+{% block content %}
+<div class="restaurant-detail-container">
+    <div class="card restaurant-detail-card mx-auto shadow-sm">
+        {% if restaurant.image %}
+        <div class="restaurant-detail-image-wrap">
+            <img src="{{ restaurant.image.url }}" alt="{{ restaurant.nazev }}" class="restaurant-detail-image">
+        </div>
+        {% elif image_url %}
+        <div class="restaurant-detail-image-wrap">
+            <img src="{{ image_url }}" alt="{{ restaurant.nazev }}" class="restaurant-detail-image">
+        </div>
+        {% else %}
+        <div class="alert alert-info m-3">No image available for this restaurant.</div>
+        {% endif %}
+        <div class="card-body text-center">
+            <h1 class="restaurant-detail-name mb-2">{{ restaurant.nazev }}</h1>
+            {% if restaurant.adresa %}
+            <div class="text-muted mb-2">{{ restaurant.adresa }}</div>
+            {% endif %}
+        </div>
+        {% if opening_hours %}
+        <div class="list-group list-group-flush">
+            {% for o in opening_hours %}
+            <div class="list-group-item d-flex justify-content-between align-items-center">
+                <div>{{ o.get_den_display }}</div>
+                <div class="text-nowrap">{{ o.otevreno_od }} — {{ o.otevreno_do }}</div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

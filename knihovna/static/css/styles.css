@@ -1,0 +1,235 @@
+body {
+	font-family: "Inter", sans-serif;
+	background:
+		radial-gradient(circle at top left, rgba(184, 92, 56, 0.12), transparent 28%),
+		radial-gradient(circle at top right, rgba(45, 104, 85, 0.12), transparent 24%),
+		linear-gradient(180deg, #fff8ef 0%, #f5ede3 45%, #efe2d4 100%);
+	color: #241b16;
+}
+
+.brand-font {
+	font-family: "Cormorant Garamond", serif;
+}
+
+main {
+	position: relative;
+	z-index: 1;
+}
+
+.container {
+	position: relative;
+}
+
+.home-hero {
+	align-items: center;
+}
+
+.home-panel,
+.home-card,
+.home-note,
+.home-footer {
+	border: 1px solid rgba(0, 0, 0, 0.08);
+	box-shadow: 0 0.75rem 1.75rem rgba(0, 0, 0, 0.06);
+}
+
+.home-panel {
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 248, 239, 0.9));
+	backdrop-filter: blur(10px);
+}
+
+.home-kicker {
+	letter-spacing: 0.2em;
+	color: #a45b35;
+	font-size: 0.78rem;
+}
+
+.home-kicker-light {
+	color: #ffd7b7;
+}
+
+.home-section-kicker-light {
+	color: #f2c39c;
+}
+
+.home-title {
+	font-family: Georgia, 'Times New Roman', serif;
+	font-weight: 700;
+	color: #241b16;
+}
+
+.home-copy {
+	color: #5e534b;
+	max-width: 42rem;
+}
+
+.home-stat {
+	background: linear-gradient(135deg, #fff7ee 0%, #f3e0cf 100%);
+	border-radius: 1rem;
+	padding: 1rem;
+	height: 100%;
+}
+
+.home-stat-label,
+.home-section-kicker {
+	letter-spacing: 0.18em;
+	font-size: 0.76rem;
+	color: #8d4124;
+	font-weight: 700;
+}
+
+.home-photo-title {
+	font-family: Georgia, 'Times New Roman', serif;
+	color: #fff;
+}
+
+.home-muted-copy {
+	color: #5e534b;
+}
+
+.home-photo {
+	min-height: 24rem;
+	background: linear-gradient(rgba(20, 14, 10, 0.16), rgba(20, 14, 10, 0.58)), url('/media/fotky_restaurace/Mestanska-beseda-Kojetin-5-scaled.jpg') center/cover no-repeat;
+	overflow: hidden;
+}
+
+.home-photo-copy {
+	color: rgba(255, 255, 255, 0.86);
+	max-width: 30rem;
+}
+
+.home-dark {
+	background: linear-gradient(135deg, #241b16 0%, #3a241c 100%);
+	color: #f5ede5;
+}
+
+.home-card {
+	background: linear-gradient(180deg, #ffffff 0%, #fff8f1 100%);
+	border-radius: 1rem;
+	padding: 1.5rem;
+	height: 100%;
+}
+
+.home-card-light {
+	background: linear-gradient(135deg, #fff5e8 0%, #f7dfc8 100%);
+}
+
+.home-note {
+	background: linear-gradient(180deg, #ffffff 0%, #fff9f2 100%);
+	border-radius: 1rem;
+	padding: 2rem;
+}
+
+.home-footer {
+	background: linear-gradient(135deg, #241b16 0%, #4c2e22 100%);
+	color: #fff;
+	border-radius: 1rem;
+	padding: 2rem;
+}
+
+.home-btn-primary {
+	background: #b85c38;
+	border-color: #b85c38;
+	color: #fff;
+}
+
+.home-btn-primary:hover {
+	background: #8d4124;
+	border-color: #8d4124;
+	color: #fff;
+}
+
+.home-photo-kicker {
+	color: #ffd7b7;
+	letter-spacing: 0.18em;
+	font-size: 0.76rem;
+	font-weight: 700;
+}
+
+.home-section-accent {
+	color: #f2c39c;
+	letter-spacing: 0.18em;
+	font-size: 0.76rem;
+}
+
+.restaurant-card-image {
+	width: 100%;
+	height: 16rem;
+	object-fit: cover;
+	object-position: center;
+}
+
+.card-title.text-truncate {
+	max-width: 100%;
+}
+
+.restaurant-card-title {
+	font-family: Georgia, 'Times New Roman', serif;
+	color: #241b16;
+	font-size: 1.25rem;
+	font-weight: 700;
+}
+
+/* Card footer buttons: split evenly and prettier */
+.btn-restaurant-primary,
+.btn-restaurant-secondary {
+	border-radius: 0.6rem;
+	padding: 0.5rem 0.75rem;
+	font-weight: 600;
+	transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.btn-restaurant-primary {
+	background: linear-gradient(180deg, #c36a44 0%, #9f4b2b 100%);
+	border: none;
+	color: #fff;
+	box-shadow: 0 6px 18px rgba(160, 84, 60, 0.12);
+}
+.btn-restaurant-primary:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 12px 26px rgba(160, 84, 60, 0.18);
+}
+
+.btn-restaurant-secondary {
+	background: #fff;
+	border: 1px solid rgba(36, 27, 22, 0.08);
+	color: #241b16;
+}
+.btn-restaurant-secondary:hover {
+	background: #f7f3ef;
+	transform: translateY(-2px);
+}
+
+/* small screens: stack buttons */
+@media (max-width: 420px) {
+	.card-footer .d-flex { flex-direction: column; }
+	.card-footer .d-flex .flex-fill { width: 100%; }
+}
+
+/* Detail page styles */
+.restaurant-detail-container {
+	max-width: 56rem;
+	margin: 0 auto;
+}
+.restaurant-detail-card {
+	overflow: hidden;
+	border-radius: 0.75rem;
+}
+.restaurant-detail-image-wrap {
+	width: 100%;
+	height: 34rem;
+	overflow: hidden;
+	background: #f5efe8;
+}
+.restaurant-detail-image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+	display: block;
+}
+.restaurant-detail-name {
+	font-family: Georgia, 'Times New Roman', serif;
+	font-size: 2rem;
+	font-weight: 700;
+	color: #241b16;
+}

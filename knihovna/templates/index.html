@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="row align-items-center g-4 py-4 py-lg-5 home-hero">
+    <div class="col-lg-7">
+        <div class="home-panel p-4 p-lg-5 rounded-4 shadow-sm">
+            <div class="text-uppercase fw-bold mb-3 home-kicker">Online rezervace stolů</div>
+            <h2 class="display-4 mb-3 home-title">Vítejte</h2>
+            <p class="lead mb-4 home-copy">Přehledný systém pro hosty i personál. Rezervujte si stůl, sledujte dostupnost a spravujte provoz restaurace na jednom místě.</p>
+            <div class="d-flex flex-wrap gap-3">
+                <a href="#reservations" class="btn btn-lg rounded-pill px-4 home-btn-primary">Rezervovat stůl</a>
+                <a href="#restaurants" class="btn btn-lg btn-outline-dark rounded-pill px-4">Prohlédnout restaurace</a>
+            </div>
+            <div class="row g-3 mt-4">
+                <div class="col-sm-4">
+                    <div class="home-stat">
+                        <div class="fw-semibold home-stat-label">Rychlé rezervace</div>
+                        <div class="text-muted small">Bez zbytečného čekání a volání.</div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="home-stat">
+                        <div class="fw-semibold home-stat-label">Přehled stolů</div>
+                        <div class="text-muted small">Vidíte, co je volné a co obsazené.</div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="home-stat">
+                        <div class="fw-semibold home-stat-label">Otevírací doba</div>
+                        <div class="text-muted small">Jasně a přehledně pro každý den.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5">
+        <div class="home-photo rounded-4 overflow-hidden shadow-sm h-100">
+            <div class="h-100 w-100 d-flex align-items-end">
+                <div class="p-4 p-lg-5 text-white">
+                    <div class="text-uppercase fw-bold mb-2 home-photo-kicker">Atmosféra podniku</div>
+                    <h3 class="h2 mb-2 home-photo-title">Moderní prostor pro klidné stolování</h3>
+                    <p class="mb-0 home-photo-copy">Elegantní prostředí, pohodlné sezení a čistý přehled pro rezervace i servis.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="restaurants" class="row g-4 py-4 py-lg-5">
+    <div class="col-lg-4">
+        <div class="home-dark p-4 rounded-4 h-100">
+            <div class="text-uppercase fw-bold mb-3 home-section-kicker home-section-accent">Restaurace</div>
+            <h3 class="brand-font display-6 mb-3">Místo, kde host začíná svůj zážitek.</h3>
+            <p class="mb-0 text-white-50">Spravujte restauraci přehledně, od stolů přes rezervace až po otevírací dobu.</p>
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="home-card h-100">
+                    <div class="fw-bold mb-2 home-stat-label">Rezervace online</div>
+                    <p class="mb-0 text-muted">Hosté si jednoduše vyberou čas a počet osob, personál má vše pod kontrolou.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="home-card h-100">
+                    <div class="fw-bold mb-2 home-stat-label">Přehled stolů</div>
+                    <p class="mb-0 text-muted">Vidíte kapacitu, stav stolů i to, co je volné pro další hosty.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="home-card h-100">
+                    <div class="fw-bold mb-2 home-stat-label">Zákazníci</div>
+                    <p class="mb-0 text-muted">Evidujte hosty, kontakty i poznámky k rezervacím přehledně na jednom místě.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="home-card h-100">
+                    <div class="fw-bold mb-2 home-stat-label">Otevírací doba</div>
+                    <p class="mb-0 text-muted">Rychle ukážete, kdy má podnik otevřeno a kdy je nejlepší čas přijít.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="reservations" class="row g-4 py-4 py-lg-5">
+    <div class="col-lg-6">
+        <div class="home-note h-100">
+            <div class="text-uppercase fw-bold mb-3 home-section-kicker">Rezervace</div>
+            <h3 class="brand-font display-6 mb-3">Jednoduchý začátek pro každého hosta.</h3>
+            <p class="text-muted mb-4">Díky přehlednému rozhraní může personál i návštěvníci rychle pracovat s rezervacemi bez chaosu.</p>
+            <ul class="list-unstyled mb-0">
+                <li class="mb-2">• Rychlé záznamy rezervací</li>
+                <li class="mb-2">• Přehled podle stolů a času</li>
+                <li class="mb-2">• Poznámky k hostům a objednávkám</li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="home-card home-card-light h-100">
+            <div class="text-uppercase fw-bold mb-3 home-section-kicker">Tip</div>
+            <h3 class="brand-font display-6 mb-3">Použijte to jako hlavní vstupní stránku.</h3>
+            <p class="mb-0 home-muted-copy">Tahle stránka funguje jako default homepage, takže návštěvník ihned vidí, že jde o restauraci s rezervacemi.</p>
+        </div>
+    </div>
+</section>
+
+<section id="hours" class="py-4 py-lg-5">
+    <div class="home-footer">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-8">
+                <h3 class="brand-font display-6 mb-2">Připraveno na provoz každý den.</h3>
+                <p class="mb-0 text-white-50">Vhodné místo pro přidání konkrétních hodin, když budete chtít do stránky doplnit skutečný provoz restaurace.</p>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <a href="/admin/" class="btn btn-lg rounded-pill px-4 home-btn-primary">Spravovat v administraci</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

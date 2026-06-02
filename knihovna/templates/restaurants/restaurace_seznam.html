@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Seznam restaurací{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Seznam restaurací</h1>
+
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+	{% for r in restaurants %}
+	<div class="col">
+		<div class="card h-100 shadow-sm restaurant-card">
+			<img src="{{ r.image_url }}" class="card-img-top restaurant-card-image" alt="{{ r.name }}" loading="lazy">
+			<div class="card-body restaurant-card-body">
+				<h5 class="card-title mb-0 text-truncate restaurant-card-title">{{ r.name }}</h5>
+			</div>
+			<div class="card-footer restaurant-card-footer bg-transparent border-0 py-3">
+				<div class="d-flex gap-2">
+					<a href="/restaurace/{{ r.id }}/" class="btn btn-restaurant-primary flex-fill">Detail</a>
+					<a href="#" class="btn btn-restaurant-secondary flex-fill">Rezervovat</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% empty %}
+	<div class="col-12">
+		<div class="alert alert-warning">No restaurant images found in <code>media/restaurace/</code>.</div>
+	</div>
+	{% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top" style="border-bottom: 1px solid rgba(0, 0, 0, 0.06);">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="/" style="font-family: Georgia, 'Times New Roman', serif; color: #241b16; letter-spacing: 0.02em;">Stůl &amp; Host</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#restaurantNav" aria-controls="restaurantNav" aria-expanded="false" aria-label="Přepnout navigaci">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="restaurantNav">
+            <ul class="navbar-nav ms-auto gap-lg-2 align-items-lg-center">
+                <li class="nav-item"><a class="nav-link" href="{% url 'restaurant_list' %}">Restaurace</a></li>
+                <li class="nav-item"><a class="nav-link" href="#reservations">Rezervace</a></li>
+                <li class="nav-item ms-lg-2"><a class="btn btn-sm rounded-pill px-3" href="/admin/" style="background: #b85c38; border-color: #b85c38; color: #fff;">Administrace</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>

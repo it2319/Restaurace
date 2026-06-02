@@ -78,6 +78,7 @@ class Telefon(models.Model):
 class Restaurace(models.Model):
     nazev = models.CharField(max_length=100)
     adresa = models.ForeignKey('Adresa', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='restaurace/', blank=True, null=True)
 
     def __str__(self):
         return self.nazev

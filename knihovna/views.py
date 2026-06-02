@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.conf import settings
 import os
 
-from .models import Restaurace, Oteviraci_doba
+from .models import Restaurace, Oteviraci_doba, Rezervace
 
 
 def home(request):
@@ -23,4 +23,14 @@ def restaurant_detail(request, pk):
     return render(request, 'restaurants/restaurace_detail.html', {
         'restaurant': restaurant,
         'opening_hours': opening_hours,
+    })
+
+def reservation_list(request, pk):
+    restaurant = get_object_or_404(Restaurace, pk=pk)
+
+    reservations = Rezervace.objects.filter(stul__Restaurace=restaurant)
+
+    return render(request, "reservations/rezervace.html", {
+        "restaurant": restaurant,
+        "reservations": reservations
     })

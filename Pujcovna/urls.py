@@ -19,11 +19,12 @@ from django.conf import settings
 from django.urls import path
 from django.conf.urls.static import static
 
-from knihovna.views import home, restaurant_list, restaurant_detail
+from knihovna.views import home, restaurant_list, restaurant_detail, reservation_list
 
 urlpatterns = [
     path('', home, name='home'),
     path('restaurace/', restaurant_list, name='restaurant_list'),
     path('restaurace/<int:pk>/', restaurant_detail, name='restaurant_detail'),
+    path("rezervace/<int:pk>/", reservation_list, name="rezervace"),
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

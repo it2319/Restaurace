@@ -344,7 +344,7 @@ class Command(BaseCommand):
     def _restaurant_name(self, index):
         adjective = RESTAURANT_ADJECTIVES[index % len(RESTAURANT_ADJECTIVES)]
         noun = RESTAURANT_NOUNS[index % len(RESTAURANT_NOUNS)]
-        return f"{adjective} {noun} {index + 1}"
+        return f"{adjective} {noun}"
 
     def _postal_code(self):
         return f"{self.random.randint(10000, 99999)}"

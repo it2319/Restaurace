@@ -83,9 +83,16 @@ class Restaurace(models.Model):
     def __str__(self):
         return self.nazev
     
+    def get_image_url(self):
+        if self.image:
+            return self.image.url
+        return '/static/img/default.jpg'
+    
     class Meta:
         verbose_name = "Restaurace"
         verbose_name_plural = "Restaurace"
+
+
 
 
 class Stat(models.Model):

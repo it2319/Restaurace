@@ -9,7 +9,7 @@
 	{% for r in restaurants %}
 	<div class="col">
 		<div class="card h-100 shadow-sm restaurant-card">
-			<img src="{{ r.image_url }}" class="card-img-top restaurant-card-image" alt="{{ r.name }}" loading="lazy">
+			<img src="{{ r.get_image_url }}" class="card-img-top restaurant-card-image" alt="{{ r.name }}" loading="lazy">
 			<div class="card-body restaurant-card-body">
 				<h5 class="card-title mb-0 text-truncate restaurant-card-title">{{ r.name }}</h5>
 			</div>

@@ -92,4 +92,6 @@ class ReservationForm(forms.ModelForm):
         reservation.delka_trvani = timedelta(hours=int(self.cleaned_data["delka_hodin"]))
         if commit:
             reservation.save()
+            reservation.stul.stav = "rezervovany"
+            reservation.stul.save()
         return reservation

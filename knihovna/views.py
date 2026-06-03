@@ -57,6 +57,8 @@ def reservation_list(request, pk):
             reservation = form.save(commit=False)
             reservation.zakaznik = customer
             reservation.save()
+            reservation.stul.stav = "rezervovany"
+            reservation.stul.save(update_fields=["stav"])
             return redirect("my_reservations")
     else:
         form = ReservationForm(restaurant=restaurant)

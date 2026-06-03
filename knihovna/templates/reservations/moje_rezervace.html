@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Moje rezervace{% endblock %}
+
+{% block content %}
+<h1 class="restaurant-detail-name mb-4 text-center">Moje rezervace</h1>
+
+{% if reservations %}
+<div class="card shadow-sm">
+    <div class="list-group list-group-flush">
+        {% for reservation in reservations %}
+        <div class="list-group-item d-flex flex-column flex-md-row justify-content-between gap-2">
+            <div>
+                <strong>{{ reservation.stul.Restaurace.nazev }}</strong>
+                <div class="text-muted">Stůl {{ reservation.stul.cislo }} pro {{ reservation.pocet_osob }} osob</div>
+                {% if reservation.poznamka %}
+                <div>{{ reservation.poznamka }}</div>
+                {% endif %}
+            </div>
+            <div class="text-md-end text-muted">{{ reservation.datum_cas }}</div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% else %}
+<div class="alert alert-info text-center">Zatím nemáte žádné rezervace.</div>
+{% endif %}
+{% endblock %}

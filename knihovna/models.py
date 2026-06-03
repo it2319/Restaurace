@@ -1,5 +1,6 @@
 
 from django.core.validators import RegexValidator
+from django.contrib.auth.models import User
 from django.db import models
 
 PSC_REGEX = RegexValidator(r'^\d{5}$', 'Nesprávně zadané poštovní směrovací číslo')
@@ -87,6 +88,8 @@ class Restaurace(models.Model):
         if self.image:
             return self.image.url
         return '/static/img/default.jpg'
+    def free_tables_count(self):
+        return self.stoly_set.filter(stav='volny').count()
     
     class Meta:
         verbose_name = "Restaurace"
@@ -132,6 +135,7 @@ class Adresa(models.Model):
 
 
 class Zakaznik(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
     jmeno = models.CharField(max_length=100)
     prijmeni = models.CharField(max_length=100)
     email = models.EmailField(max_length=100, unique=True)

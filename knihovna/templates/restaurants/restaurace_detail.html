@@ -21,6 +21,7 @@
             {% if restaurant.adresa %}
             <div class="text-muted mb-2">{{ restaurant.adresa }}</div>
             {% endif %}
+            <a href="{% url 'rezervace' restaurant.id %}" class="btn btn-restaurant-primary mt-3 px-4">Rezervovat</a>
         </div>
         {% if opening_hours %}
         <div class="list-group list-group-flush">

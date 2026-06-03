@@ -12,6 +12,7 @@
 			<img src="{{ r.get_image_url }}" class="card-img-top restaurant-card-image" alt="{{ r.nazev }}" loading="lazy">
 			<div class="card-body restaurant-card-body">
 				<h5 class="card-title mb-0 text-truncate restaurant-card-title">{{ r.nazev }}</h5>
+				<p class="card-text text-muted mb-0">Volné stoly: {{ r.free_tables_count }}</p>
 			</div>
 			<div class="card-footer restaurant-card-footer bg-transparent border-0 py-3">
 				<div class="d-flex gap-2">

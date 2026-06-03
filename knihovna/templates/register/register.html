@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Registrace{% endblock %}
+
+{% block content %}
+<div class="auth-panel mx-auto">
+    <h1 class="restaurant-detail-name mb-4 text-center">Registrace</h1>
+    <form method="post" class="card shadow-sm auth-card">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-restaurant-primary w-100">Vytvořit účet</button>
+        <div class="text-center mt-3">
+            <a href="{% url 'login' %}">Už máte účet? Přihlášení</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

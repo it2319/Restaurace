@@ -1,7 +1,16 @@
 {% extends "base.html" %}
 
-{% block title %}Detail restaurace{% endblock %}
+{% block title %}Rezervace{% endblock %}
 
 {% block content %}
-    <h1 class="mb-4 text-center">Formulář pro rezervaci</h1>
+<div class="auth-panel mx-auto">
+    <h1 class="restaurant-detail-name mb-2 text-center">Rezervace</h1>
+    <p class="text-center text-muted mb-4">{{ restaurant.nazev }}</p>
+
+    <form method="post" class="card shadow-sm auth-card">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-restaurant-primary w-100">Odeslat rezervaci</button>
+    </form>
+</div>
 {% endblock %}

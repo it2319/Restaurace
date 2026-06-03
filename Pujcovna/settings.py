@@ -122,6 +122,10 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'restaurant_list'
+LOGOUT_REDIRECT_URL = 'restaurant_list'
+
 JAZZMIN_SETTINGS = {
     "site_title": "Restaurace Admin",
     "site_header": "Správa restaurace",

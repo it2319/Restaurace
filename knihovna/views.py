@@ -84,3 +84,4 @@ def my_reservations(request):
     return render(request, "reservations/moje_rezervace.html", {
         "reservations": reservations,
     })
+    

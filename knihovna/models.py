@@ -2,16 +2,19 @@
 from django.core.validators import RegexValidator
 from django.contrib.auth.models import User
 from django.db import models
+from django.core.exceptions import ValidationError
+from django.core.validators import MinValueValidator
+from datetime import date, timedelta, datetime, timezone
 
 PSC_REGEX = RegexValidator(r'^\d{5}$', 'Nesprávně zadané poštovní směrovací číslo')
 TELEFON_REGEX = RegexValidator(r'^[+]\d{3}( \d{3}){3}$', 'Nesprávně zadané telefonní číslo')
 
 class Rezervace(models.Model):
     zakaznik = models.ForeignKey('Zakaznik', on_delete=models.CASCADE)
-    stul = models.ForeignKey('Stoly', on_delete=models.CASCADE)
-    datum_cas = models.DateTimeField()
+    stul = models.ForeignKey('Stoly', on_delete=models.CASCADE,limit_choices_to={'stav': 'volny'})
+    datum_cas = models.DateTimeField(validators=[MinValueValidator(limit_value=datetime.utcnow().replace(tzinfo=timezone.utc), message="Datum a čas rezervace musí být v budoucnosti.")])
     delka_trvani = models.DurationField()
-    pocet_osob = models.IntegerField()
+    pocet_osob = models.IntegerField(validators=[MinValueValidator(1)])
     poznamka = models.TextField(blank=True, null=True)
 
     class Meta:
@@ -21,7 +24,6 @@ class Rezervace(models.Model):
 
     def __str__(self):
         return f"Rezervace pro {self.zakaznik} na stůl {self.stul} dne {self.datum_cas} pro {self.pocet_osob} osob - {self.poznamka}"
-    
 
 class Oteviraci_doba(models.Model):
     Restaurace = models.ForeignKey('Restaurace', on_delete=models.CASCADE)
@@ -94,8 +96,6 @@ class Restaurace(models.Model):
     class Meta:
         verbose_name = "Restaurace"
         verbose_name_plural = "Restaurace"
-
-
 
 
 class Stat(models.Model):

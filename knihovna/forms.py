@@ -6,11 +6,15 @@ from django.contrib.auth.models import User
 
 from .models import Adresa, Mesto, Rezervace, Stat, Stoly, Zakaznik
 
+import re
+from django.core.exceptions import ValidationError
+
 
 class RegistrationForm(UserCreationForm):
     first_name = forms.CharField(label="Jméno", max_length=100)
     last_name = forms.CharField(label="Příjmení", max_length=100)
     email = forms.EmailField(label="E-mail")
+    telefon = forms.CharField(label="Telefon", max_length=20, help_text="Zadejte telefonní číslo ve formátu +420 123 456 789")
     ulice = forms.CharField(label="Ulice", max_length=100)
     psc = forms.CharField(label="PSČ", max_length=10)
     mesto = forms.CharField(label="Město", max_length=100)
@@ -23,6 +27,7 @@ class RegistrationForm(UserCreationForm):
             "first_name",
             "last_name",
             "email",
+            "telefon",
             "password1",
             "password2",
             "ulice",
@@ -30,6 +35,26 @@ class RegistrationForm(UserCreationForm):
             "mesto",
             "stat",
         )
+
+    def clean_email(self):
+        email = self.cleaned_data["email"]
+
+        if Zakaznik.objects.filter(email=email).exists():
+            raise forms.ValidationError(
+                "Účet s tímto e-mailem už existuje."
+            )
+
+        return email
+    def clean_telefon(self):
+        telefon = self.cleaned_data["telefon"]
+
+        telefon = telefon.replace(" ", "")
+
+        if not re.match(r'^\+420\d{9}$', telefon):
+            raise ValidationError("Telefon musí být ve formátu +420123456789")
+
+        return telefon
+
 
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -84,8 +109,14 @@ class ReservationForm(forms.ModelForm):
 
     def __init__(self, *args, restaurant=None, **kwargs):
         super().__init__(*args, **kwargs)
+
+        self.fields["stul"].error_messages["invalid_choice"] = (
+            "Tento stůl již není dostupný."
+        )
+
         if restaurant is not None:
             self.fields["stul"].queryset = Stoly.objects.filter(Restaurace=restaurant)
+            self.fields["stul"].queryset = self.fields["stul"].queryset.filter(stav="volny")
 
     def save(self, commit=True):
         reservation = super().save(commit=False)

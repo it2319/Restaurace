@@ -1,5 +1,5 @@
 
-from django.core.validators import RegexValidator
+from django.core.validators import MaxValueValidator, RegexValidator
 from django.contrib.auth.models import User
 from django.db import models
 from django.core.exceptions import ValidationError
@@ -7,20 +7,27 @@ from django.core.validators import MinValueValidator
 from datetime import date, timedelta, datetime, timezone
 
 PSC_REGEX = RegexValidator(r'^\d{5}$', 'Nesprávně zadané poštovní směrovací číslo')
+MESTO_REGEX = RegexValidator(r'^[A-Za-zÁČĎÉĚÍŇÓŘŠŤÚŮÝŽáčďéěíňóřšťúůýž ]+$', 'Město může obsahovat pouze písmena.')
 TELEFON_REGEX = RegexValidator(r'^[+]\d{3}( \d{3}){3}$', 'Nesprávně zadané telefonní číslo')
 
 class Rezervace(models.Model):
     zakaznik = models.ForeignKey('Zakaznik', on_delete=models.CASCADE)
-    stul = models.ForeignKey('Stoly', on_delete=models.CASCADE,limit_choices_to={'stav': 'volny'})
+    stul = models.ForeignKey('Stoly', on_delete=models.CASCADE)
     datum_cas = models.DateTimeField(validators=[MinValueValidator(limit_value=datetime.utcnow().replace(tzinfo=timezone.utc), message="Datum a čas rezervace musí být v budoucnosti.")])
     delka_trvani = models.DurationField()
-    pocet_osob = models.IntegerField(validators=[MinValueValidator(1)])
+    pocet_osob = models.IntegerField(validators=[MinValueValidator(1, message="Počet osob musí být alespoň 1.")])
     poznamka = models.TextField(blank=True, null=True)
 
     class Meta:
         verbose_name = "Rezervace"
         verbose_name_plural = "Rezervace"
 
+    def clean(self):
+        if self.pocet_osob > self.stul.pocet_mist:
+            raise ValidationError({
+                "pocet_osob":
+                f"Stůl má pouze {self.stul.pocet_mist} míst."
+            })
 
     def __str__(self):
         return f"Rezervace pro {self.zakaznik} na stůl {self.stul} dne {self.datum_cas} pro {self.pocet_osob} osob - {self.poznamka}"
@@ -123,8 +130,8 @@ class Mesto(models.Model):
 
 class Adresa(models.Model):
     ulice = models.CharField(max_length=100)
-    psc = models.CharField(max_length=10)
-    mesto = models.ForeignKey(Mesto, on_delete=models.CASCADE)
+    psc = models.CharField(validators=[PSC_REGEX], max_length=10)
+    mesto = models.ForeignKey(Mesto, on_delete=models.CASCADE, validators=[MESTO_REGEX])
 
     def __str__(self):
         return f"{self.ulice} {self.psc}, {self.mesto}"

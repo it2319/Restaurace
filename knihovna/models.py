@@ -13,7 +13,7 @@ TELEFON_REGEX = RegexValidator(r'^[+]\d{3}( \d{3}){3}$', 'Nesprávně zadané te
 class Rezervace(models.Model):
     zakaznik = models.ForeignKey('Zakaznik', on_delete=models.CASCADE)
     stul = models.ForeignKey('Stoly', on_delete=models.CASCADE)
-    datum_cas = models.DateTimeField(validators=[MinValueValidator(limit_value=datetime.utcnow().replace(tzinfo=timezone.utc), message="Datum a čas rezervace musí být v budoucnosti.")])
+    datum_cas = models.DateTimeField(validators=[MinValueValidator(limit_value=datetime.utcnow().replace(tzinfo=timezone.utc), message="Datum a čas rezervace musí být v minulosti.")])
     delka_trvani = models.DurationField()
     pocet_osob = models.IntegerField(validators=[MinValueValidator(1, message="Počet osob musí být alespoň 1.")])
     poznamka = models.TextField(blank=True, null=True)

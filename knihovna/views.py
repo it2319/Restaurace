@@ -22,7 +22,7 @@ def restaurant_list(request):
 def restaurant_detail(request, pk):
     restaurant = get_object_or_404(Restaurace, pk=pk)
 
-    opening_hours = Oteviraci_doba.objects.filter(Restaurace=restaurant).order_by('den')
+    opening_hours = Oteviraci_doba.objects.filter(Restaurace=restaurant)
 
     return render(request, 'restaurants/restaurace_detail.html', {
         'restaurant': restaurant,
